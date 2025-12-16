@@ -1,0 +1,19 @@
+package com.jpv.reservai.dto;
+
+import com.jpv.reservai.entities.Cliente;
+import com.jpv.reservai.entities.Usuario;
+
+public class ClienteDTO extends Usuario {
+
+	public ClienteDTO() {}
+	
+	public ClienteDTO(String nome, String email, String endereco, String telefone, String password) {
+		super(null, nome, email, endereco, telefone, password);
+	}
+	
+	public ClienteDTO(Cliente obj) {
+		super(obj.getCodigo(), obj.getNome(),obj.getEmail(), obj.getEndereco(), obj.getTelefone(), obj.getPassword());
+	}
+	
+
+}

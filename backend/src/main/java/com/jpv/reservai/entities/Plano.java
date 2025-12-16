@@ -1,0 +1,77 @@
+package com.jpv.reservai.entities;
+
+import java.util.Date;
+
+import com.jpv.reservai.enums.StatusPagamento;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Plano {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Long codigo;
+	
+	private int qtdeAgendamentoMensal;
+	private Double preco;
+	private String descricao;
+	
+	private Integer statusPagamento;
+
+	private Date dataPagamento;
+	
+	public Plano() {}
+	
+	public Plano(Long codigo, int qtdeAgendamentoMensal, Double preco, String descricao, StatusPagamento statusPagamento,
+					Date dataPagamento) {
+		super();
+		this.codigo = codigo;
+		this.qtdeAgendamentoMensal = qtdeAgendamentoMensal;
+		this.preco = preco;
+		this.descricao = descricao;
+		this.statusPagamento = statusPagamento.getCode();
+		this.dataPagamento = dataPagamento;
+	}
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+	public int getQtdeAgendamentoMensal() {
+		return qtdeAgendamentoMensal;
+	}
+	public void setQtdeAgendamentoMensal(int qtdeAgendamentoMensal) {
+		this.qtdeAgendamentoMensal = qtdeAgendamentoMensal;
+	}
+	public Double getPreco() {
+		return preco;
+	}
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public Integer getStatusPagamento() {
+		return statusPagamento;
+	}
+	public void setStatusPagamento(Integer statusPagamento) {
+		this.statusPagamento = statusPagamento;
+	}
+	public Date getDataPagamento() {
+		return dataPagamento;
+	}
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
+	}
+	
+	
+}

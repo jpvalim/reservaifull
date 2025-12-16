@@ -1,0 +1,36 @@
+# Diretórios de build e temporários
+target/
+bin/
+*.class
+*.jar
+*.war
+*.log
+.settings/
+.project
+.classpath
+
+# Arquivos de IDE (Eclipse/STS)
+.metadata/
+.checkstyle
+.pdebuild
+
+# Arquivos de build Maven/Gradle
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+build/
+.gradle/
+
+# Arquivos de configuração e segurança
+*.properties
+*.yml
+*.json
+.env
+*.iml
+
+# Logs e temporários do sistema
+*.tmp
+.DS_Store

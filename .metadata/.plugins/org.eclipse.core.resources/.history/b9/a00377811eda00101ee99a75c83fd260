@@ -1,0 +1,46 @@
+package com.jpv.reservai.services;
+
+
+
+import org.springframework.stereotype.Service;
+
+import com.jpv.reservai.dto.ClienteDTO;
+import com.jpv.reservai.entities.Cliente;
+import com.jpv.reservai.exceptions.ObjectNotFoundException;
+import com.jpv.reservai.repositories.ClienteRepository;
+
+@Service
+public class ClienteService {
+
+	
+	private final ClienteRepository clienteRepo;
+	
+	
+	
+	
+	
+	public ClienteService(final ClienteRepository userRepository, final PasswordEncoder passwordEncoder) {
+		this.clienteRepo = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
+	
+	
+	public Cliente findById(Long codigoCliente) {
+		return clienteRepo.findById(codigoCliente).orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado!" + " ID: " + codigoCliente));
+		
+	}
+	
+	public Cliente save(Cliente objCliente) {
+		objCliente.setPassword(passwordEncoder.encode(objCliente.getPassword()));
+		return clienteRepo.save(objCliente);
+	}
+	
+	public Cliente fromDTO(ClienteDTO objDTO) {
+		Cliente obj = new Cliente(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getPassword());
+		return obj;
+	}
+	
+	
+		
+	
+}
