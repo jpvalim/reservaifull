@@ -2,7 +2,9 @@ package com.jpv.reservai.dto;
 
 import com.jpv.reservai.entities.Cliente;
 import com.jpv.reservai.entities.Usuario;
+import com.jpv.reservai.services.validators.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO extends Usuario {
 
 	public ClienteDTO() {}
@@ -15,5 +17,4 @@ public class ClienteDTO extends Usuario {
 		super(obj.getCodigo(), obj.getNome(),obj.getEmail(), obj.getEndereco(), obj.getTelefone(), obj.getPassword());
 	}
 	
-
 }
