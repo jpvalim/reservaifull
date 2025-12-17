@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.jpv.reservai.enums.Perfil;
 
 import jakarta.persistence.CollectionTable;
@@ -15,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -24,9 +27,13 @@ public abstract class Usuario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long codigo;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 5, max = 120, message= "O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
 	private String email;
 	private String endereco;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String telefone;
 	private String password;
 	

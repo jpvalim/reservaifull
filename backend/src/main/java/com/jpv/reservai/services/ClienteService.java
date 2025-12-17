@@ -5,6 +5,7 @@ package com.jpv.reservai.services;
 import org.springframework.stereotype.Service;
 
 import com.jpv.reservai.dto.ClienteDTO;
+import com.jpv.reservai.dto.ClienteNewDTO;
 import com.jpv.reservai.entities.Cliente;
 import com.jpv.reservai.exceptions.ObjectNotFoundException;
 import com.jpv.reservai.repositories.ClienteRepository;
@@ -37,6 +38,12 @@ public class ClienteService {
 	public Cliente fromDTO(ClienteDTO objDTO) {
 		Cliente obj = new Cliente(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getPassword());
 		return obj;
+	}
+	
+	public Cliente fromDTO(ClienteNewDTO objDTO) {
+		Cliente cli  =  new Cliente(null, objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(),objDTO.getPassword());
+		return cli;
+		
 	}
 	
 	
