@@ -45,6 +45,23 @@ public class ClienteService {
 		return cli;
 		
 	}
+
+
+	public Cliente update(Cliente obj) {
+		Cliente newObj = findById(obj.getCodigo());
+		updateData(newObj, obj);
+		return clienteRepo.save(newObj);
+	}
+
+
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setEmail(obj.getEmail());
+		newObj.setEndereco(obj.getEndereco());
+		newObj.setNome(obj.getNome());
+		newObj.setPassword(obj.getPassword());
+		newObj.setTelefone(obj.getTelefone());
+		
+	}
 	
 	
 		
