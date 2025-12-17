@@ -18,7 +18,7 @@ import com.jpv.reservai.services.ClienteService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/cliente")
+@RequestMapping(value = "/clientes")
 public class ClienteResource {
 	
 	private final ClienteService clienteService;
