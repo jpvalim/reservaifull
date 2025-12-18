@@ -2,6 +2,8 @@ package com.jpv.reservai.services;
 
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.jpv.reservai.dto.ClienteDTO;
@@ -15,10 +17,6 @@ public class ClienteService {
 
 	
 	private final ClienteRepository clienteRepo;
-	
-	
-	
-	
 	
 	public ClienteService(final ClienteRepository userRepository) {
 		this.clienteRepo = userRepository;
@@ -53,7 +51,11 @@ public class ClienteService {
 		return clienteRepo.save(newObj);
 	}
 
-
+	public void delete(Long id) {
+		clienteRepo.deleteById(id);
+	}
+	
+	
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setEmail(obj.getEmail());
 		newObj.setEndereco(obj.getEndereco());
@@ -61,6 +63,12 @@ public class ClienteService {
 		newObj.setPassword(obj.getPassword());
 		newObj.setTelefone(obj.getTelefone());
 		
+	}
+
+
+	public List<Cliente> findAll() {
+		
+		return clienteRepo.findAll();
 	}
 	
 	
