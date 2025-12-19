@@ -1,0 +1,69 @@
+package com.jpv.reservai.services;
+
+import org.springframework.stereotype.Service;
+
+import com.jpv.reservai.dto.FornecedorDTO;
+import com.jpv.reservai.dto.FornecedorNewDTO;
+import com.jpv.reservai.entities.Cliente;
+import com.jpv.reservai.entities.Fornecedor;
+import com.jpv.reservai.exceptions.ObjectNotFoundException;
+import com.jpv.reservai.repositories.FornecedorRepository;
+
+@Service
+public class FornecedorService {
+
+	
+	private final FornecedorRepository fornecedorRepo;
+	
+	
+	
+	
+	public FornecedorService(final FornecedorRepository fornecedorRepository) {
+		this.fornecedorRepo = fornecedorRepository;
+		
+	}
+	
+	
+	public Fornecedor findById(Long codigoFornecedor) {
+		return fornecedorRepo.findById(codigoFornecedor).orElseThrow(() -> new ObjectNotFoundException("Fornecedor não encontrado!" + " ID: " + codigoFornecedor));
+		
+	}
+	
+	public Fornecedor save(Fornecedor objFornecedor) {
+		return fornecedorRepo.save(objFornecedor);
+	}
+	
+	public Fornecedor fromDTO(FornecedorDTO objDTO) {
+		Fornecedor obj = new Fornecedor(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getRazaoSocial(),objDTO.getPlano(),objDTO.getPassword());
+		return obj;
+	}
+	
+	public Fornecedor fromDTO(FornecedorNewDTO objDTO) {
+		Fornecedor obj = new Fornecedor(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getRazaoSocial(),objDTO.getPlano(),objDTO.getPassword());
+		return obj;
+	}
+	
+	public Fornecedor update(Fornecedor obj) {
+		Fornecedor newObj = findById(obj.getCodigo());
+		updateData(newObj, obj);
+		return fornecedorRepo.save(newObj);
+	}
+
+
+	private void updateData(Fornecedor newObj, Fornecedor obj) {
+		newObj.setEmail(obj.getEmail());
+		newObj.setEndereco(obj.getEndereco());
+		newObj.setNome(obj.getNome());
+		newObj.setPassword(obj.getPassword());
+		newObj.setPlano(obj.getPlano());
+		newObj.setQtdeAgendamentos(obj.getQtdeAgendamentos());
+		newObj.setRazaoSocial(obj.getRazaoSocial());
+		newObj.setTelefone(obj.getTelefone());
+		
+	}
+
+	
+	
+		
+	
+}

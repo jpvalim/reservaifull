@@ -2,6 +2,7 @@ package com.jpv.reservai.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jpv.reservai.enums.StatusPagamento;
 
 import jakarta.persistence.Entity;
@@ -21,7 +22,7 @@ public class Plano {
 	private String descricao;
 	
 	private Integer statusPagamento;
-
+	@JsonFormat(pattern ="dd/MM/yyyy")
 	private Date dataPagamento;
 	
 	public Plano() {}
@@ -34,6 +35,7 @@ public class Plano {
 		this.preco = preco;
 		this.descricao = descricao;
 		this.statusPagamento = statusPagamento.getCode();
+		
 		this.dataPagamento = dataPagamento;
 	}
 	public Long getCodigo() {

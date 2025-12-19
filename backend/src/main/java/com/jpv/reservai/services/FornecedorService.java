@@ -1,8 +1,11 @@
 package com.jpv.reservai.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.jpv.reservai.dto.FornecedorDTO;
+import com.jpv.reservai.dto.FornecedorNewDTO;
 import com.jpv.reservai.entities.Fornecedor;
 import com.jpv.reservai.exceptions.ObjectNotFoundException;
 import com.jpv.reservai.repositories.FornecedorRepository;
@@ -35,6 +38,38 @@ public class FornecedorService {
 		Fornecedor obj = new Fornecedor(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getRazaoSocial(),objDTO.getPlano(),objDTO.getPassword());
 		return obj;
 	}
+	
+	public Fornecedor fromDTO(FornecedorNewDTO objDTO) {
+		Fornecedor obj = new Fornecedor(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getRazaoSocial(),objDTO.getPlano(),objDTO.getPassword());
+		return obj;
+	}
+	
+	public Fornecedor update(Fornecedor obj) {
+		Fornecedor newObj = findById(obj.getCodigo());
+		updateData(newObj, obj);
+		return fornecedorRepo.save(newObj);
+	}
+
+	public void delete(Long id) {
+		fornecedorRepo.deleteById(id);
+	}
+
+	public List<Fornecedor> findAll(){
+		return fornecedorRepo.findAll();
+	}
+	
+	private void updateData(Fornecedor newObj, Fornecedor obj) {
+		newObj.setEmail(obj.getEmail());
+		newObj.setEndereco(obj.getEndereco());
+		newObj.setNome(obj.getNome());
+		newObj.setPassword(obj.getPassword());
+		newObj.setPlano(obj.getPlano());
+		newObj.setQtdeAgendamentos(obj.getQtdeAgendamentos());
+		newObj.setRazaoSocial(obj.getRazaoSocial());
+		newObj.setTelefone(obj.getTelefone());
+		
+	}
+
 	
 	
 		
