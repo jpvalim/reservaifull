@@ -1,7 +1,6 @@
 package com.jpv.reservai.dto;
 
 import com.jpv.reservai.entities.Fornecedor;
-import com.jpv.reservai.entities.Plano;
 import com.jpv.reservai.entities.Usuario;
 
 public class FornecedorNewDTO extends Usuario {
@@ -10,24 +9,24 @@ public class FornecedorNewDTO extends Usuario {
 	private String razaoSocial;
 	private int qtdeAgendamentos;
 
-	private Plano plano;
+	private Long planoCodigo;
 	
 	public FornecedorNewDTO() {}
 	
 	public FornecedorNewDTO(String nome, String email, String endereco, String telefone, String password, 
-			String razaoSocial, int qtdeAgendamentos, Plano plano) {
+			String razaoSocial, int qtdeAgendamentos, Long planoCodigo) {
 		
 		super(null, nome, email, endereco, telefone, password);
 		this.razaoSocial = razaoSocial;
 		this.qtdeAgendamentos = qtdeAgendamentos;
-		this.plano = plano;
+		this.planoCodigo = planoCodigo;
 	}
 	
 	public FornecedorNewDTO(Fornecedor obj) {
 		super(obj.getCodigo(), obj.getNome(),obj.getEmail(), obj.getEndereco(), obj.getTelefone(), obj.getPassword());
 		this.razaoSocial = obj.getRazaoSocial();
 		this.qtdeAgendamentos = obj.getQtdeAgendamentos();
-		this.plano = obj.getPlano();
+		this.planoCodigo = obj.getPlano().getCodigo();
 	}
 
 	public String getRazaoSocial() {
@@ -46,12 +45,12 @@ public class FornecedorNewDTO extends Usuario {
 		this.qtdeAgendamentos = qtdeAgendamentos;
 	}
 
-	public Plano getPlano() {
-		return plano;
+	public Long getPlanoCodigo() {
+		return planoCodigo;
 	}
 
-	public void setPlano(Plano plano) {
-		this.plano = plano;
+	public void setPlanoCodigo(Long plano) {
+		this.planoCodigo = plano;
 	}
 	
 

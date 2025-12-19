@@ -15,12 +15,11 @@ public class FornecedorService {
 
 	
 	private final FornecedorRepository fornecedorRepo;
+	private final PlanoService planoService;
 	
-	
-	
-	
-	public FornecedorService(final FornecedorRepository fornecedorRepository) {
+	public FornecedorService(final FornecedorRepository fornecedorRepository, final PlanoService planoService) {
 		this.fornecedorRepo = fornecedorRepository;
+		this.planoService = planoService;
 		
 	}
 	
@@ -40,7 +39,7 @@ public class FornecedorService {
 	}
 	
 	public Fornecedor fromDTO(FornecedorNewDTO objDTO) {
-		Fornecedor obj = new Fornecedor(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getRazaoSocial(),objDTO.getPlano(),objDTO.getPassword());
+		Fornecedor obj = new Fornecedor(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getRazaoSocial(),planoService.findById(objDTO.getPlanoCodigo()),objDTO.getPassword());
 		return obj;
 	}
 	

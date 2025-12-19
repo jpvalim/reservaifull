@@ -1,79 +1,93 @@
-package com.jpv.reservai.entities;
+package com.jpv.reservai.dto;
 
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jpv.reservai.entities.Plano;
 import com.jpv.reservai.enums.StatusPagamento;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Plano {
+public class PlanoNewDTO {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long codigo;
-	
 	private int qtdeAgendamentoMensal;
 	private Double preco;
 	private String descricao;
-	
-	private Integer statusPagamento;
+	private StatusPagamento statusPagamento;
 	@JsonFormat(pattern ="dd/MM/yyyy")
 	private Date dataPagamento;
 	
-	public Plano() {}
+
+	public PlanoNewDTO() {}
 	
-	public Plano(Long codigo, int qtdeAgendamentoMensal, Double preco, String descricao, StatusPagamento statusPagamento,
-					Date dataPagamento) {
-		super();
+	public PlanoNewDTO(Long codigo, int qtdeAgendamentoMensal, Double preco, String descricao, StatusPagamento statusPagamento,
+			Date dataPagamento) {
+		
 		this.codigo = codigo;
 		this.qtdeAgendamentoMensal = qtdeAgendamentoMensal;
 		this.preco = preco;
 		this.descricao = descricao;
-		this.statusPagamento = statusPagamento.getCode();
+		this.statusPagamento = statusPagamento;
 		this.dataPagamento = dataPagamento;
 	}
 	
+	public PlanoNewDTO(Plano obj) {
+		this.codigo = obj.getCodigo();
+		this.qtdeAgendamentoMensal = obj.getQtdeAgendamentoMensal();
+		this.preco = obj.getPreco();
+		this.descricao = obj.getDescricao();
+		this.statusPagamento = StatusPagamento.valueOf(obj.getStatusPagamento());
+		this.dataPagamento = obj.getDataPagamento();
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+
 	public int getQtdeAgendamentoMensal() {
 		return qtdeAgendamentoMensal;
 	}
+
 	public void setQtdeAgendamentoMensal(int qtdeAgendamentoMensal) {
 		this.qtdeAgendamentoMensal = qtdeAgendamentoMensal;
 	}
+
 	public Double getPreco() {
 		return preco;
 	}
+
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Integer getStatusPagamento() {
-		return statusPagamento;
-	}
-	public void setStatusPagamento(Integer statusPagamento) {
-		this.statusPagamento = statusPagamento;
-	}
+
 	public Date getDataPagamento() {
 		return dataPagamento;
 	}
+
 	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
+
+	public StatusPagamento getStatusPagamento() {
+		return statusPagamento;
+	}
+
+	public void setStatusPagamento(StatusPagamento statusPagamento) {
+		this.statusPagamento = statusPagamento;
+	}
+	
+	
 	
 	
 }
