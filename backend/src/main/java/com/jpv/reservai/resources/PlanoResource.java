@@ -23,7 +23,7 @@ import com.jpv.reservai.services.PlanoService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/Planos")
+@RequestMapping(value = "/planos")
 public class PlanoResource {
 	
 	private final PlanoService PlanoService;
