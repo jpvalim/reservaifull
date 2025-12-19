@@ -29,8 +29,9 @@ public class Atendente extends Usuario {
 		addPerfil(Perfil.ATENDENTE);
 	}
 	
-	public Atendente(Long codigo, String nome, String email, String endereco, String telefone, String hash) {
+	public Atendente(Long codigo, String nome, String email, String endereco, String telefone, String hash, Fornecedor fornecedor) {
 		super(codigo, nome, email, endereco, telefone, hash);
+		this.fornecedor = fornecedor;
 		addPerfil(Perfil.ATENDENTE);
 	}
 

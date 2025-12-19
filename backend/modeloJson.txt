@@ -23,3 +23,14 @@ Fornecedor
     "telefone" : "19999999999",
     "password" : "jpv123"
 }
+
+Atendente
+
+{
+   "fornecedorId" : "1",
+    "nome" : "Jefferson Valim",
+    "email" : "jpvalim@gmail.com",
+    "endereco" : "Rua das flores, 23, Jardim Alegre, Indaiatuba-SP",
+    "telefone" : "19999999999",
+    "password" : "jpv123"
+}

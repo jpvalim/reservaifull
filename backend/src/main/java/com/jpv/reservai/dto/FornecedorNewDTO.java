@@ -54,5 +54,4 @@ public class FornecedorNewDTO extends Usuario {
 	}
 	
 
-
 }

@@ -3,19 +3,19 @@ package com.jpv.reservai.dto;
 import com.jpv.reservai.entities.Atendente;
 import com.jpv.reservai.entities.Usuario;
 
-public class AtendenteDTO extends Usuario{
-	
+
+public class AtendenteNewDTO extends Usuario {
+
 	private Long fornecedorId;
 	
-	public AtendenteDTO() {}
+	public AtendenteNewDTO() {}
 	
-	public AtendenteDTO(String nome, String email, String endereco, String telefone, String password, Long fornecedorId) {
+	public AtendenteNewDTO(String nome, String email, String endereco, String telefone, String password, Long fornecedorId) {
 		super(null, nome, email, endereco, telefone, password);
 		this.fornecedorId = fornecedorId;
-		
 	}
 	
-	public AtendenteDTO(Atendente obj) {
+	public AtendenteNewDTO(Atendente obj) {
 		super(obj.getCodigo(), obj.getNome(),obj.getEmail(), obj.getEndereco(), obj.getTelefone(), obj.getPassword());
 		this.fornecedorId = obj.getFornecedor().getCodigo();
 	}
@@ -28,5 +28,5 @@ public class AtendenteDTO extends Usuario{
 		this.fornecedorId = fornecedorId;
 	}
 	
-
+	
 }
