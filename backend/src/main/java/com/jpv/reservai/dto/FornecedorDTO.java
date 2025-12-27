@@ -3,7 +3,9 @@ package com.jpv.reservai.dto;
 import com.jpv.reservai.entities.Fornecedor;
 import com.jpv.reservai.entities.Plano;
 import com.jpv.reservai.entities.Usuario;
+import com.jpv.reservai.services.validators.UsuarioUpdate;
 
+@UsuarioUpdate
 public class FornecedorDTO extends Usuario {
 
 	

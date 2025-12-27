@@ -2,7 +2,9 @@ package com.jpv.reservai.dto;
 
 import com.jpv.reservai.entities.Atendente;
 import com.jpv.reservai.entities.Usuario;
+import com.jpv.reservai.services.validators.UsuarioUpdate;
 
+@UsuarioUpdate
 public class AtendenteDTO extends Usuario{
 	
 	private Long fornecedorId;

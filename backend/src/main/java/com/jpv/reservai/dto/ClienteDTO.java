@@ -2,9 +2,9 @@ package com.jpv.reservai.dto;
 
 import com.jpv.reservai.entities.Cliente;
 import com.jpv.reservai.entities.Usuario;
-import com.jpv.reservai.services.validators.ClienteUpdate;
+import com.jpv.reservai.services.validators.UsuarioUpdate;
 
-@ClienteUpdate
+@UsuarioUpdate
 public class ClienteDTO extends Usuario {
 
 	public ClienteDTO() {}

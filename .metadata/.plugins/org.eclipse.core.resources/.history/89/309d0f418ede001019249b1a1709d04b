@@ -1,0 +1,65 @@
+package com.jpv.reservai.entities;
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+import com.jpv.reservai.enums.Perfil;
+import com.jpv.reservai.services.validators.UsuarioInsert;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+
+@UsuarioInsert
+@Entity
+public class Cliente extends Usuario{
+
+	@ManyToMany
+	@JoinTable(
+	        name = "cliente_fornecedor",
+	        joinColumns = @JoinColumn(name = "cliente_id"),
+	        inverseJoinColumns = @JoinColumn(name = "fornecedor_id")
+	    )
+	private Set<Fornecedor> fornecedores = new HashSet<>();
+	
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Agendamento> agendamentos = new HashSet<>();
+	
+		
+	public Cliente() {
+		super();
+		addPerfil(Perfil.CLIENTE);
+	}
+	
+	public Cliente(Long codigo, String nome, String email, String endereco, String telefone, String hash) {
+		super(codigo, nome, email, endereco, telefone, hash);
+		addPerfil(Perfil.CLIENTE);
+				
+	}
+
+		
+	public Set<Fornecedor> getFornecedores(){
+		return this.fornecedores;
+	}
+	
+	public void addFornecedor(Fornecedor fornecedor) {
+		this.fornecedores.add(fornecedor);
+		fornecedor.getClientes().add(this);
+		
+	}
+	
+	public void addAgendamento(Agendamento agendamento) {
+		this.agendamentos.add(agendamento);
+	}
+
+	public Set<Agendamento>agendamento(){
+		return this.agendamentos;
+	}
+	
+	
+	
+}
