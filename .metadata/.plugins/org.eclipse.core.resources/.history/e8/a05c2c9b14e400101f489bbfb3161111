@@ -1,0 +1,16 @@
+package com.jpv.reservai.dto;
+
+import com.jpv.reservai.entities.Servico;
+
+
+public class ServicoDTO{
+
+	public ServicoDTO() {}
+	
+	
+	
+	public ServicoDTO(Servico obj) {
+		
+	}
+	
+}

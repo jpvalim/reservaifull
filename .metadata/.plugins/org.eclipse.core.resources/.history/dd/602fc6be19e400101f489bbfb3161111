@@ -1,0 +1,27 @@
+package com.jpv.reservai.dto;
+
+import com.jpv.reservai.entities.Atendente;
+import com.jpv.reservai.entities.Cliente;
+import com.jpv.reservai.entities.Fornecedor;
+import com.jpv.reservai.entities.Servico;
+import com.jpv.reservai.entities.Usuario;
+import com.jpv.reservai.services.validators.UsuarioInsert;
+
+@UsuarioInsert
+public class ServicoNewDTO {
+
+	private Long Codigo;
+	private String descricao;
+	private Double preco;
+	private String descricaoUnidade;
+	private Long tempoMinutos;
+	private Atendente atendente;
+	private Fornecedor fornecedor;
+	
+		
+	public ServicoDTO() {}
+		
+	public ServicoDTO(Servico obj) {
+		
+	}
+}
