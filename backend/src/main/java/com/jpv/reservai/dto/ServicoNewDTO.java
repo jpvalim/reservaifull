@@ -1,12 +1,20 @@
 package com.jpv.reservai.dto;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.jpv.reservai.entities.Servico;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 
 public class ServicoNewDTO {
 
 	private Long codigo;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 5, max = 120, message= "O tamanho deve ser entre 5 e 120 caracteres")
 	private String descricao;
+	@NotNull(message = "O preço é obrigatório")
 	private Double preco;
 	private String descricaoUnidade;
 	private Long tempoMinutos;
