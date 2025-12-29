@@ -1,0 +1,74 @@
+package com.jpv.reservai.services;
+
+
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.jpv.reservai.dto.ServicoDTO;
+import com.jpv.reservai.dto.ServicoNewDTO;
+import com.jpv.reservai.entities.Servico;
+import com.jpv.reservai.exceptions.ObjectNotFoundException;
+import com.jpv.reservai.repositories.ServicoRepository;
+
+@Service
+public class ServicoService {
+
+	
+	private final ServicoRepository servicoRepo;
+	
+	public ServicoService(final ServicoRepository userRepository) {
+		this.servicoRepo = userRepository;
+	
+	}
+	
+	
+	public Servico findById(Long codigoServico) {
+		return servicoRepo.findById(codigoServico).orElseThrow(() -> new ObjectNotFoundException("Servico não encontrado!" + " ID: " + codigoServico));
+		
+	}
+	
+	public Servico save(Servico objServico) {
+		return servicoRepo.save(objServico);
+	}
+	
+	public Servico fromDTO(ServicoDTO objDTO) {
+		Servico obj = new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(),null, null, objDTO.getTempoMinutos());
+		return obj;
+	}
+	
+	public Servico fromDTO(ServicoNewDTO objDTO) {
+		Servico obj  =  new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(),null, null, objDTO.getTempoMinutos());
+		return obj;
+		
+	}
+
+
+	public Servico update(Servico obj) {
+		Servico newObj = findById(obj.getCodigo());
+		updateData(newObj, obj);
+		return servicoRepo.save(newObj);
+	}
+
+	public void delete(Long id) {
+		servicoRepo.deleteById(id);
+	}
+	
+	
+	private void updateData(Servico newObj, Servico obj) {
+		
+		
+		
+	}
+
+
+	public List<Servico> findAll() {
+		
+		return servicoRepo.findAll();
+	}
+	
+	
+		
+	
+}

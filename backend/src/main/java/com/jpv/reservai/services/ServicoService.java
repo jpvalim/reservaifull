@@ -34,13 +34,13 @@ public class ServicoService {
 	}
 	
 	public Servico fromDTO(ServicoDTO objDTO) {
-		Servico obj = new Servico(objDTO.getCodigo(),objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(), objDTO.getPassword());
+		Servico obj = new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(),null, null, objDTO.getTempoMinutos());
 		return obj;
 	}
 	
 	public Servico fromDTO(ServicoNewDTO objDTO) {
-		Servico cli  =  new Servico(null, objDTO.getNome(),objDTO.getEmail(),objDTO.getEndereco(),objDTO.getTelefone(),objDTO.getPassword());
-		return cli;
+		Servico obj  =  new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(),null, null, objDTO.getTempoMinutos());
+		return obj;
 		
 	}
 
@@ -57,9 +57,13 @@ public class ServicoService {
 	
 	
 	private void updateData(Servico newObj, Servico obj) {
-
-		
-		
+		newObj.setAtendente(obj.getAtendente());
+		newObj.setCodigo(obj.getCodigo());
+		newObj.setDescricao(obj.getDescricao());
+		newObj.setDescricaoUnidade(obj.getDescricaoUnidade());
+		newObj.setPreco(obj.getPreco());
+		newObj.setTempoMinutos(obj.getTempoMinutos());
+				
 	}
 
 

@@ -45,3 +45,17 @@ Atendente
     "telefone" : "19999999999",
     "password" : "jpv123"
 }
+
+Servico
+{
+	"descricao" : "Corte de cabelo",
+	"preco" : 35.00,
+	"descricaoUnidade" : "UN"
+	"tempoMinutos" : 30
+}
+
+	private Long codigo;
+	private String descricao;
+	private Double preco;
+	private String descricaoUnidade;
+	private Long tempoMinutos;

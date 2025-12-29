@@ -1,0 +1,94 @@
+package com.jpv.reservai.dto;
+
+import com.jpv.reservai.entities.Servico;
+
+
+public class ServicoDTO{
+	
+	private Long codigo;
+	private String descricao;
+	private Double preco;
+	private String descricaoUnidade;
+	private Long tempoMinutos;
+	
+	
+		
+	public ServicoDTO() {}
+	
+		
+	public ServicoDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos) {
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.descricaoUnidade = descricaoUnidade;
+		this.tempoMinutos = tempoMinutos;
+	}
+
+
+
+	public ServicoDTO(Servico obj) {
+		this.codigo = obj.getCodigo();
+		this.descricao = obj.getDescricao();
+		this.preco = obj.getPreco();
+		this.descricaoUnidade = obj.getDescricaoUnidade();
+		this.tempoMinutos = obj.getTempoMinutos();
+	}
+
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+
+	public Double getPreco() {
+		return preco;
+	}
+
+
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+
+
+	public String getDescricaoUnidade() {
+		return descricaoUnidade;
+	}
+
+
+
+	public void setDescricaoUnidade(String descricaoUnidade) {
+		this.descricaoUnidade = descricaoUnidade;
+	}
+
+
+
+	public Long getTempoMinutos() {
+		return tempoMinutos;
+	}
+
+
+
+	public void setTempoMinutos(Long tempoMinutos) {
+		this.tempoMinutos = tempoMinutos;
+	}
+}
