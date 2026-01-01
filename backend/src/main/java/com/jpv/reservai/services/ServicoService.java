@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.jpv.reservai.dto.ServicoDTO;
+import com.jpv.reservai.dto.ServicoNewDTO;
 import com.jpv.reservai.entities.Atendente;
 import com.jpv.reservai.entities.Fornecedor;
 import com.jpv.reservai.entities.Servico;
@@ -39,7 +39,7 @@ public class ServicoService {
 		return servicoRepo.save(objServico);
 	}
 	
-	public Servico fromDTO(ServicoDTO objDTO, Fornecedor fornecedor, Atendente atendente) {
+	public Servico fromDTO(ServicoNewDTO objDTO, Fornecedor fornecedor, Atendente atendente) {
 		Servico obj = new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(), atendente, fornecedor ,objDTO.getTempoMinutos());
 		return obj;
 	}

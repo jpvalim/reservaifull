@@ -10,20 +10,19 @@ public class ServicoDTO{
 	private Double preco;
 	private String descricaoUnidade;
 	private Long tempoMinutos;
-	private Long codAtendente;
-	private Long codFornecedor;
+	private AtendenteDTO atendenteDTO;
+	
 	
 			
 	public ServicoDTO() {}
 			
-	public ServicoDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos, Long codAtendente, Long codFornecedor) {
+	public ServicoDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos, AtendenteDTO atendenteDTO) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.descricaoUnidade = descricaoUnidade;
 		this.tempoMinutos = tempoMinutos;
-		this.codAtendente = codAtendente;
-		this.codFornecedor = codFornecedor;
+		this.atendenteDTO = atendenteDTO;
 		
 	}
 
@@ -34,6 +33,7 @@ public class ServicoDTO{
 		this.preco = obj.getPreco();
 		this.descricaoUnidade = obj.getDescricaoUnidade();
 		this.tempoMinutos = obj.getTempoMinutos();
+		this.atendenteDTO = new AtendenteDTO(obj.getAtendente());
 	}
 
 
@@ -77,22 +77,15 @@ public class ServicoDTO{
 		this.tempoMinutos = tempoMinutos;
 	}
 
-	public Long getCodAtendente() {
-		return codAtendente;
+	public AtendenteDTO getAtendenteDTO() {
+		return atendenteDTO;
 	}
 
-	public void setCodAtendente(Long codAtendente) {
-		this.codAtendente = codAtendente;
+	public void setAtendenteDTO(AtendenteDTO atendenteDTO) {
+		this.atendenteDTO = atendenteDTO;
 	}
 
-	public Long getCodFornecedor() {
-		return codFornecedor;
-	}
-
-	public void setCodFornecedor(Long codFornecedor) {
-		this.codFornecedor = codFornecedor;
-	}
-
+	
 	
 		
 }

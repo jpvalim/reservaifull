@@ -2,6 +2,7 @@ package com.jpv.reservai.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jpv.reservai.dto.FornecedorDTO;
 import com.jpv.reservai.dto.FornecedorNewDTO;
+import com.jpv.reservai.dto.ServicoDTO;
+import com.jpv.reservai.dto.ServicoNewDTO;
+import com.jpv.reservai.entities.Atendente;
 import com.jpv.reservai.entities.Fornecedor;
+import com.jpv.reservai.entities.Servico;
+import com.jpv.reservai.services.AtendenteService;
 import com.jpv.reservai.services.FornecedorService;
+import com.jpv.reservai.services.ServicoService;
 
 import jakarta.validation.Valid;
 
@@ -27,10 +34,14 @@ import jakarta.validation.Valid;
 public class FornecedorResource {
 	
 	private final FornecedorService fornecedorService;
-
+	private final AtendenteService atendenteService;
+	private final ServicoService servicoService;
 	
-	public FornecedorResource(final FornecedorService fornecedorService) {
+	
+	public FornecedorResource(final FornecedorService fornecedorService, final ServicoService servicoService, final AtendenteService atendenteService) {
 		this.fornecedorService = fornecedorService;
+		this.atendenteService = atendenteService;
+		this.servicoService = servicoService;
 		
 	}
 	
@@ -70,6 +81,25 @@ public class FornecedorResource {
 		
 	}
 	
+	//Servicos
+	
+	@PostMapping(value = "/{id}/servicos")
+	public ResponseEntity<Void> insertServico(@PathVariable Long id , @RequestBody ServicoNewDTO servico){
+		Fornecedor objFornecedor= fornecedorService.findById(id);
+		Atendente objAtendente = atendenteService.findById(servico.getCodAtendente());
+		Servico objServico = servicoService.fromDTO(servico, objFornecedor, objAtendente);
+		servicoService.save(objServico);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objFornecedor.getCodigo()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
+	@GetMapping(value="/{id}/servicos")
+	public ResponseEntity<List<ServicoDTO>> findAllServicos (@PathVariable Long id){
+		Set<Servico> meusServicos =  fornecedorService.findById(id).getServico();
+		List<ServicoDTO> listDTO = meusServicos.stream().map(obj -> new ServicoDTO(obj)).collect((Collectors.toList()));
+		return ResponseEntity.ok().body(listDTO);
+		
+	}
 	
 	
 	

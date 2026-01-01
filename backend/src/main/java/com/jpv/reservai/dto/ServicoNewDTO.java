@@ -1,32 +1,30 @@
 package com.jpv.reservai.dto;
 
-import org.hibernate.validator.constraints.Length;
-
 import com.jpv.reservai.entities.Servico;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
-
-public class ServicoNewDTO {
-
+public class ServicoNewDTO{
+	
 	private Long codigo;
-	@NotEmpty(message = "Preenchimento obrigatório")
-	@Length(min = 5, max = 120, message= "O tamanho deve ser entre 5 e 120 caracteres")
 	private String descricao;
-	@NotNull(message = "O preço é obrigatório")
 	private Double preco;
 	private String descricaoUnidade;
 	private Long tempoMinutos;
+	private Long codAtendente;
+	private Long codFornecedor;
+	
 			
 	public ServicoNewDTO() {}
-				
-	public ServicoNewDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos) {
+			
+	public ServicoNewDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos, Long codAtendente, Long codFornecedor) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.descricaoUnidade = descricaoUnidade;
 		this.tempoMinutos = tempoMinutos;
+		this.codAtendente = codAtendente;
+		this.codFornecedor = codFornecedor;
+		
 	}
 
 
@@ -78,5 +76,23 @@ public class ServicoNewDTO {
 	public void setTempoMinutos(Long tempoMinutos) {
 		this.tempoMinutos = tempoMinutos;
 	}
+
+	public Long getCodAtendente() {
+		return codAtendente;
+	}
+
+	public void setCodAtendente(Long codAtendente) {
+		this.codAtendente = codAtendente;
+	}
+
+	public Long getCodFornecedor() {
+		return codFornecedor;
+	}
+
+	public void setCodFornecedor(Long codFornecedor) {
+		this.codFornecedor = codFornecedor;
+	}
+
 	
+		
 }
