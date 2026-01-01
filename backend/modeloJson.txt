@@ -48,9 +48,11 @@ Atendente
 
 Servico
 {
-	"descricao" : "Corte de cabelo",
+	"codFornecedor" : 1,
+	"codAtendente" : 1,
+    "descricao" : "Corte de cabelo",
 	"preco" : 35.00,
-	"descricaoUnidade" : "UN"
+	"descricaoUnidade" : "UN",
 	"tempoMinutos" : 30
 }
 

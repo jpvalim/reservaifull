@@ -1,0 +1,49 @@
+package com.jpv.reservai.resources;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpv.reservai.dto.ServicoDTO;
+import com.jpv.reservai.entities.Servico;
+import com.jpv.reservai.services.ServicoService;
+
+@RestController
+@RequestMapping(value="/servicos")
+public class ServicoResource {
+	
+	private final ServicoService servicoService;
+	
+	public ServicoResource(final ServicoService servicoService) {
+		this.servicoService = servicoService;
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Servico> find(@PathVariable Long id) {
+		Servico obj = servicoService.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+	
+	
+		
+	@DeleteMapping(value= "/{id}")
+	public ResponseEntity<Void> delete (@PathVariable Long id){
+		servicoService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<ServicoDTO>> findAll(){
+		List<Servico> listServico = servicoService.findAll();
+		List<ServicoDTO> listDTO = listServico.stream().map(obj -> new ServicoDTO(obj)).collect((Collectors.toList()));
+		return ResponseEntity.ok().body(listDTO);
+		
+	}
+	
+}

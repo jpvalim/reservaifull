@@ -4,12 +4,20 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="true"/>
 		<list key="replacehistory">
+			<item value="Servico"/>
+			<item value="servico"/>
+			<item value="Usuario"/>
+			<item value="Cliente"/>
+			<item value="atendente"/>
+			<item value="Atendente"/>
 			<item value="fornecedor"/>
 			<item value="Fornecedor"/>
 		</list>
 		<list key="findhistory">
-			<item value="cliente"/>
 			<item value="Cliente"/>
+			<item value="cliente"/>
+			<item value="Atendente"/>
+			<item value="Fornecedor"/>
 		</list>
 	</section>
 </section>

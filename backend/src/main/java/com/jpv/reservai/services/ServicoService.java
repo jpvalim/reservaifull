@@ -7,7 +7,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.jpv.reservai.dto.ServicoDTO;
-import com.jpv.reservai.dto.ServicoNewDTO;
+import com.jpv.reservai.entities.Atendente;
+import com.jpv.reservai.entities.Fornecedor;
 import com.jpv.reservai.entities.Servico;
 import com.jpv.reservai.exceptions.ObjectNotFoundException;
 import com.jpv.reservai.repositories.ServicoRepository;
@@ -18,9 +19,14 @@ public class ServicoService {
 	
 	private final ServicoRepository servicoRepo;
 	
-	public ServicoService(final ServicoRepository userRepository) {
-		this.servicoRepo = userRepository;
 	
+	
+	
+	
+	public ServicoService(final ServicoRepository servicoRepository) {
+		this.servicoRepo = servicoRepository;
+		
+
 	}
 	
 	
@@ -33,17 +39,12 @@ public class ServicoService {
 		return servicoRepo.save(objServico);
 	}
 	
-	public Servico fromDTO(ServicoDTO objDTO) {
-		Servico obj = new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(),null, null, objDTO.getTempoMinutos());
+	public Servico fromDTO(ServicoDTO objDTO, Fornecedor fornecedor, Atendente atendente) {
+		Servico obj = new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(), atendente, fornecedor ,objDTO.getTempoMinutos());
 		return obj;
 	}
 	
-	public Servico fromDTO(ServicoNewDTO objDTO) {
-		Servico obj  =  new Servico(null, objDTO.getDescricao(), objDTO.getPreco(),objDTO.getDescricaoUnidade(),null, null, objDTO.getTempoMinutos());
-		return obj;
-		
-	}
-
+	
 
 	public Servico update(Servico obj) {
 		Servico newObj = findById(obj.getCodigo());

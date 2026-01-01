@@ -1,0 +1,51 @@
+package com.jpv.reservai.resources;
+
+import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.jpv.reservai.dto.ServicoDTO;
+import com.jpv.reservai.entities.Atendente;
+import com.jpv.reservai.entities.Fornecedor;
+import com.jpv.reservai.entities.Servico;
+import com.jpv.reservai.services.AtendenteService;
+import com.jpv.reservai.services.FornecedorService;
+import com.jpv.reservai.services.ServicoService;
+
+@RestController
+@RequestMapping(value="/servicos")
+public class ServicoResource {
+	
+	private final ServicoService servicoService;
+	private final FornecedorService fornecedorService;
+	private final AtendenteService atendenteService;
+	
+	public ServicoResource(final ServicoService servicoService, final FornecedorService fornecedorService, final AtendenteService atendenteService) {
+		this.servicoService = servicoService;
+		this.fornecedorService = fornecedorService;
+		this.atendenteService = atendenteService;
+	}
+	
+	@PostMapping (value="/servicos")
+	public ResponseEntity<Void> insertServico(ServicoDTO servico){
+		Fornecedor objFornecedor= fornecedorService.findById(servico.getCodFornecedor());
+		Atendente objAtendente = atendenteService.findById(servico.getCodAtendente());
+		Servico objServico = servicoService.fromDTO(servico, objFornecedor, objAtendente);
+		objServico = servicoService.save(objServico);
+		objFornecedor.addServico(objServico);
+		fornecedorService.save(objFornecedor);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objFornecedor.getCodigo()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
+	
+}

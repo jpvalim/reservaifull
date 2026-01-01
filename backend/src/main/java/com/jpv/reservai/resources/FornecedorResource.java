@@ -20,7 +20,6 @@ import com.jpv.reservai.dto.FornecedorNewDTO;
 import com.jpv.reservai.entities.Fornecedor;
 import com.jpv.reservai.services.FornecedorService;
 
-
 import jakarta.validation.Valid;
 
 @RestController
@@ -28,9 +27,11 @@ import jakarta.validation.Valid;
 public class FornecedorResource {
 	
 	private final FornecedorService fornecedorService;
+
 	
 	public FornecedorResource(final FornecedorService fornecedorService) {
 		this.fornecedorService = fornecedorService;
+		
 	}
 	
 	@GetMapping(value = "/{id}")
@@ -68,5 +69,9 @@ public class FornecedorResource {
 		return ResponseEntity.ok().body(listDTO);
 		
 	}
+	
+	
+	
+	
 	
 }

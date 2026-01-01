@@ -10,15 +10,21 @@ public class ServicoDTO{
 	private Double preco;
 	private String descricaoUnidade;
 	private Long tempoMinutos;
+	private Long codAtendente;
+	private Long codFornecedor;
+	
 			
 	public ServicoDTO() {}
 			
-	public ServicoDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos) {
+	public ServicoDTO(Long codigo, String descricao, Double preco, String descricaoUnidade, Long tempoMinutos, Long codAtendente, Long codFornecedor) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.descricaoUnidade = descricaoUnidade;
 		this.tempoMinutos = tempoMinutos;
+		this.codAtendente = codAtendente;
+		this.codFornecedor = codFornecedor;
+		
 	}
 
 
@@ -70,4 +76,23 @@ public class ServicoDTO{
 	public void setTempoMinutos(Long tempoMinutos) {
 		this.tempoMinutos = tempoMinutos;
 	}
+
+	public Long getCodAtendente() {
+		return codAtendente;
+	}
+
+	public void setCodAtendente(Long codAtendente) {
+		this.codAtendente = codAtendente;
+	}
+
+	public Long getCodFornecedor() {
+		return codFornecedor;
+	}
+
+	public void setCodFornecedor(Long codFornecedor) {
+		this.codFornecedor = codFornecedor;
+	}
+
+	
+		
 }
