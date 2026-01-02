@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.jpv.reservai.dto.ServicoDTO;
 import com.jpv.reservai.dto.ServicoNewDTO;
+import com.jpv.reservai.dto.ServicoUpdateDTO;
 import com.jpv.reservai.entities.Atendente;
 import com.jpv.reservai.entities.Fornecedor;
 import com.jpv.reservai.entities.Servico;

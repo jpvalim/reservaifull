@@ -109,8 +109,30 @@ public class FornecedorResource {
 		
 	}
 	
+	@PutMapping(value = "/{id}/servicos/{cod_servico}")
+	public ResponseEntity<Void> updateServico (@PathVariable Long id,@PathVariable Long cod_servico ,@RequestBody ServicoNewDTO obj){
+		Fornecedor objFornecedor= fornecedorService.findById(id);
+		Atendente objAtendente = atendenteService.findById(obj.getCodAtendente());
+		Servico objServico = servicoService.fromDTO(obj, objFornecedor, objAtendente);
+		objServico.setCodigo(cod_servico);
+		servicoService.update(objServico);
+		return ResponseEntity.noContent().build();
+	}
 	
-	
+	@DeleteMapping(value = "/{id}/servicos/{cod_servico}")
+	public ResponseEntity<Void> deleteServico(@PathVariable Long id, @PathVariable Long cod_servico){
+		Fornecedor objFornecedor= fornecedorService.findById(id);
+		for (Servico obj : objFornecedor.getServico()) {
+			if(obj.getCodigo() == cod_servico) {
+				objFornecedor.getServico().remove(obj);
+				break;
+			}
+		}
+		
+		fornecedorService.save(objFornecedor);
+		return ResponseEntity.noContent().build();
+		
+	}
 	
 	
 	
