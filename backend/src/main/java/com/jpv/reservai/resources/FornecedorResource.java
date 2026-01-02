@@ -101,6 +101,16 @@ public class FornecedorResource {
 		
 	}
 	
+	@GetMapping (value = "/{id}/servicos/{cod_servico}")
+	public ResponseEntity<ServicoDTO> findServicoById(@PathVariable Long cod_servico){
+		Servico servico = servicoService.findById(cod_servico);
+		ServicoDTO obj = new ServicoDTO(servico);
+		return ResponseEntity.ok().body(obj);
+		
+	}
+	
+	
+	
 	
 	
 	
