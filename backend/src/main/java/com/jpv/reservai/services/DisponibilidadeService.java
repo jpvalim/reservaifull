@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jpv.reservai.dto.DisponibilidadeDTO;
 import com.jpv.reservai.entities.Agendamento;
 import com.jpv.reservai.entities.Disponibilidade;
 import com.jpv.reservai.repositories.AgendamentoRepository;
@@ -34,5 +35,11 @@ public class DisponibilidadeService {
                         agendamento.getHoraInicio().isBefore(disponibilidade.getHoraFim()) &&
                         agendamento.getHoraFim().isAfter(disponibilidade.getHoraInicio())))
                 .collect(Collectors.toList());
+    }
+    
+    public List<DisponibilidadeDTO> findAll(Long id_atendente){
+    	List<Disponibilidade> disponibilidades = disponibilidadeRepository.findByAtendenteCodigo(id_atendente);
+    	List<DisponibilidadeDTO> listDTO = disponibilidades.stream().map(d -> new DisponibilidadeDTO(d.getId(), d.getData(), d.getHoraInicio(), d.getHoraFim())).toList();
+    	return listDTO;
     }
 }
